@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.pagination {
+  justify-content: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  @screen md {
+    justify-content: flex-start;
+  }
+  .previous,
+  .next {
+    background: #f3f3f3;
+    width: 70px;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul.pagination li {
+  display: inline-block;
+  width: 30px;
+  border: 1px solid #e2e2e2;
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  @screen md {
+    font-size: 25px;
+  }
+}
+
+ul.pagination li a {
+  text-decoration: none;
+  color: #7c7481;
+  font-size: 15px;
+}
+
+ul.pagination li.active a {
+  color: white;
+}
+ul.pagination li.active {
+  background-color: #581c87;
+}
+
+ul.pagination li a:hover,
+ul.pagination li a.active {
+  color: #581c87;
+}
+
+.page-selection {
+  width: 48px;
+  height: 30px;
+  color: #581c87;
+}
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}

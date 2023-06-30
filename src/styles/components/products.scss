@@ -1,0 +1,52 @@
+#products {
+  padding-bottom: 1rem;
+  width: 100%;
+  // @screen md {
+  //   width: 877px;
+  // }
+  @screen lg {
+    width: 1047px;
+  }
+  .the-table {
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+
+    table,
+    th,
+    td {
+      background: #f7f7f7;
+      border: 0.5px solid #b6acac;
+      // border-radius: 8px;
+      border-collapse: separate;
+      border-spacing: 0px;
+    }
+  }
+
+  .table-head {
+    th {
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #221f20;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      @screen md {
+        height: 48px;
+      }
+    }
+    td {
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      // text-transform: uppercase;
+      color: #221f20;
+      height: 48px;
+      display: flex;
+      align-items: center;
+    }
+    td:first-child {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
