@@ -19,7 +19,7 @@ const Layout: React.FC<Props> = ({ children }) => {
       </nav>
 
       {/* Desktop and Tablet Sidebar */}
-      <aside className="hidden md:flex bg-purple-900 w-48 h-screen px-4 py-4 flex-col items-start gap-4">
+      <aside className="hidden md:flex bg-purple-900 w-48 h-auto px-4 py-4 flex-col items-start gap-4">
         {/* <button
           onClick={() => {
             setBtn1Active(true);

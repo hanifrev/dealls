@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import theData from "../dummy/Products.json";
 import ProductFilter from "./ProductFilter";
 import ReactPaginate from "react-paginate";
+import DynamicChart from "./DynamicChart";
 
 const Products: React.FC = () => {
   const [search, setSearch] = useState<string>("");
@@ -23,6 +24,13 @@ const Products: React.FC = () => {
   ];
 
   console.log(categories);
+
+  const defaultFilter = {
+    category: "",
+    minPrice: 0,
+    maxPrice: 9999,
+    minRating: 0,
+  };
 
   const handleFilter = (
     category: string,
@@ -54,6 +62,12 @@ const Products: React.FC = () => {
 
   return (
     <div id="products">
+      <details>
+        <summary>
+          <h1>Chart of Brand</h1>
+        </summary>
+        <DynamicChart />
+      </details>
       <div className="pb-2 flex flex-col">
         <label className="text-[10px]">Search:</label>
         <input

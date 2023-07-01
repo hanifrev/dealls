@@ -6,7 +6,7 @@ const NavButton = () => {
   const [btn1Active, setBtn1Active] = useState<boolean>(true);
   const [btn2Active, setBtn2Active] = useState<boolean>(false);
 
-  const activeButton = useSelector((state: any) => state.button.activeButton);
+  // const activeButton = useSelector((state: any) => state.button.activeButton);
   const dispatch = useDispatch();
 
   return (

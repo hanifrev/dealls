@@ -1,4 +1,27 @@
 #products {
+  details {
+    width: 100%;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.15);
+    color: #000;
+    margin: 2rem 0;
+    @screen lg {
+      width: 1040px;
+    }
+  }
+  summary {
+    cursor: pointer;
+  }
+  summary h1 {
+    display: inline;
+    margin-left: 1rem;
+    font-size: 13px;
+    @screen md {
+      font-size: 16px;
+    }
+  }
   padding-bottom: 1rem;
   width: 100%;
   // @screen md {

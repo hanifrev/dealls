@@ -8,11 +8,18 @@ type ProductFilterProps = {
     maxPrice: number,
     minRating: number
   ) => void;
+  // resetFilter: (
+  //   category: string,
+  //   minPrice: number,
+  //   maxPrice: number,
+  //   minRating: number
+  // ) => void;
 };
 
 const ProductFilter: React.FC<ProductFilterProps> = ({
   categories,
   onFilter,
+  // resetFilter,
 }) => {
   const [category, setCategory] = useState("");
   const [minPrice, setMinPrice] = useState(0);
@@ -22,6 +29,16 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
   const handleFilter = () => {
     onFilter(category, minPrice, maxPrice, minRating);
   };
+
+  // const handleResetFilter = () => {
+  //   setCategory("");
+  //   setMinPrice(0);
+  //   setMaxPrice(9999);
+  //   setMinRating(0);
+  // };
+  // const handleResetFilter = () => {
+  //   resetFilter(category, minPrice, maxPrice, minRating);
+  // };
 
   return (
     <div className="mb-4 flex text-[10px] gap-3 overflow-x-auto items-center">
@@ -73,7 +90,13 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
           className="  p-2 border border-gray-300 rounded-md text-black"
         />
       </div>
-
+      {/* 
+      <button
+        onClick={handleResetFilter}
+        className="p-2 bg-red-500 text-white rounded-md h-min"
+      >
+        Reset
+      </button> */}
       <button
         onClick={handleFilter}
         className="p-2 bg-blue-500 text-white rounded-md h-min"
