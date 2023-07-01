@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
-import theData from "../dummy/Products.json";
+// import theData from "../dummy/Products.json";
 import ProductFilter from "./ProductFilter";
 import ReactPaginate from "react-paginate";
 import DynamicChart from "./DynamicChart";
+import { useGetProductsQuery } from "@/app/services/api";
 
 const Products: React.FC = () => {
+  const { data, isLoading } = useGetProductsQuery(50);
+
+  const theData = data && data.products;
+
   const [search, setSearch] = useState<string>("");
   const [products, setProducts] = useState<any>();
   const [filteredProducts, setFilteredProducts] = useState<any>();
@@ -13,10 +18,12 @@ const Products: React.FC = () => {
   const productsPerPage = 10;
 
   useEffect(() => {
-    setProducts(theData);
-    setSearchData(theData);
-    setFilteredProducts(theData.slice(0, productsPerPage));
-  }, []);
+    if (theData) {
+      setProducts(theData);
+      setSearchData(theData);
+      setFilteredProducts(theData && theData.slice(0, productsPerPage));
+    }
+  }, [theData]);
 
   //   @ts-ignore
   const categories: string[] = [
@@ -68,43 +75,80 @@ const Products: React.FC = () => {
         </summary>
         <DynamicChart />
       </details>
+
       <div className="pb-2 flex flex-col">
         <label className="text-[10px]">Search:</label>
         <input
           type="text"
           className="w-full md:w-64 text-black p-1 text-[10px]"
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search here..."
+          placeholder="Search product name here..."
         />
       </div>
+
       <ProductFilter categories={categories} onFilter={handleFilter} />
-      <div className="the-table overflow-x-auto">
-        <table rules="all" className="mb-1">
-          <thead>
-            <tr className="flex flex-row items-center text-[10px] md:text-sm table-head">
-              <th className="w-[50px] md:w-[70px] text-center pl-2">THE ID</th>
-              <th className="w-[265px] text-left pl-4">Product Name</th>
-              <th className="w-[250px] text-left pl-4">Brand</th>
-              <th className="w-[100px] text-left pl-4">Price</th>
-              <th className="w-[100px] text-left pl-4">Rating</th>
-              <th className="w-[100px] text-left pl-4">Stock</th>
-              <th className="w-[150px] text-left pl-4">Category</th>
-            </tr>
-          </thead>
-          <tbody>
-            {search.length > 0
-              ? searchData &&
-                searchData
-                  .filter((x: any) => {
-                    if (search == "") {
-                      return x;
-                    } else if (
-                      x.title.toLowerCase().includes(search.toLowerCase())
-                    ) {
-                      return x;
-                    }
-                  })
-                  .map((x: any) => {
+
+      {isLoading ? (
+        <div className="text-xl md:text-4xl py-4">LOADING...</div>
+      ) : (
+        <div className="the-table overflow-x-auto">
+          <table rules="all" className="mb-1">
+            <thead>
+              <tr className="flex flex-row items-center text-[10px] md:text-sm table-head">
+                <th className="w-[50px] md:w-[70px] text-center pl-2">
+                  THE ID
+                </th>
+                <th className="w-[265px] text-left pl-4">Product Name</th>
+                <th className="w-[250px] text-left pl-4">Brand</th>
+                <th className="w-[100px] text-left pl-4">Price</th>
+                <th className="w-[100px] text-left pl-4">Rating</th>
+                <th className="w-[100px] text-left pl-4">Stock</th>
+                <th className="w-[150px] text-left pl-4">Category</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {search.length > 0
+                ? searchData &&
+                  searchData
+                    .filter((x: any) => {
+                      if (search == "") {
+                        return x;
+                      } else if (
+                        x.title.toLowerCase().includes(search.toLowerCase())
+                      ) {
+                        return x;
+                      }
+                    })
+                    .map((x: any) => {
+                      return (
+                        <tr className="flex flex-row items-center text-[10px] md:text-sm  table-head">
+                          <td className="w-[50px] md:w-[70px] text-left ">
+                            {x.id}
+                          </td>
+                          <td className="w-[265px] text-left pl-4 publicAdd">
+                            {x.title}
+                          </td>
+                          <td className="w-[250px] text-left pl-4 flex-wrap">
+                            {x.brand}
+                          </td>
+                          <td className="w-[100px] text-left pl-4">
+                            ${x.price}
+                          </td>
+                          <td className="w-[100px] text-left pl-4">
+                            {x.rating}
+                          </td>
+                          <td className="w-[100px] text-left pl-4">
+                            {x.stock} pcs
+                          </td>
+                          <td className="w-[150px] text-left pl-4">
+                            {x.category}
+                          </td>
+                        </tr>
+                      );
+                    })
+                : filteredProducts &&
+                  filteredProducts.map((x: any) => {
                     return (
                       <tr className="flex flex-row items-center text-[10px] md:text-sm  table-head">
                         <td className="w-[50px] md:w-[70px] text-left ">
@@ -126,32 +170,12 @@ const Products: React.FC = () => {
                         </td>
                       </tr>
                     );
-                  })
-              : filteredProducts &&
-                filteredProducts.map((x: any) => {
-                  return (
-                    <tr className="flex flex-row items-center text-[10px] md:text-sm  table-head">
-                      <td className="w-[50px] md:w-[70px] text-left ">
-                        {x.id}
-                      </td>
-                      <td className="w-[265px] text-left pl-4 publicAdd">
-                        {x.title}
-                      </td>
-                      <td className="w-[250px] text-left pl-4 flex-wrap">
-                        {x.brand}
-                      </td>
-                      <td className="w-[100px] text-left pl-4">${x.price}</td>
-                      <td className="w-[100px] text-left pl-4">{x.rating}</td>
-                      <td className="w-[100px] text-left pl-4">
-                        {x.stock} pcs
-                      </td>
-                      <td className="w-[150px] text-left pl-4">{x.category}</td>
-                    </tr>
-                  );
-                })}
-          </tbody>
-        </table>
-      </div>
+                  })}
+            </tbody>
+          </table>
+        </div>
+      )}
+
       {search.length > 0 ? (
         ""
       ) : (

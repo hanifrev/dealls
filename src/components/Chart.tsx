@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import ApexChart from "react-apexcharts";
-import theData from "../dummy/Products.json";
+import { useGetProductsQuery } from "@/app/services/api";
 
 const Chart: React.FC = () => {
+  const { data } = useGetProductsQuery(50);
+
+  const theData = data && data.products;
   const [brandsData, setBrandsData] = useState<any>(null);
 
   useEffect(() => {
-    // Count the number of items per brand
     const brandCounts: Record<string, number> = {};
-    theData.forEach((product: any) => {
-      const { brand } = product;
-      brandCounts[brand] = (brandCounts[brand] || 0) + 1;
-    });
+    theData &&
+      theData.forEach((product: any) => {
+        const { brand } = product;
+        brandCounts[brand] = (brandCounts[brand] || 0) + 1;
+      });
 
-    // Prepare the data for ApexCharts
     const chartData = {
       options: {
         chart: {
@@ -33,7 +35,7 @@ const Chart: React.FC = () => {
     };
 
     setBrandsData(chartData);
-  }, []);
+  }, [theData]);
 
   return brandsData ? (
     <ApexChart

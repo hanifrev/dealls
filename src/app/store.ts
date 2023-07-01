@@ -1,10 +1,17 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import buttonReducer from "./features/buttonSlice";
+import { api } from "./services/api";
 
-const store = configureStore({
-  reducer: {
-    button: buttonReducer,
-  },
+const rootReducer = combineReducers({
+  button: buttonReducer,
+  [api.reducerPath]: api.reducer,
 });
 
-export default store;
+export default configureStore({
+  reducer: rootReducer,
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(api.middleware),
+});
+
+export type RootState = ReturnType<typeof rootReducer>;
