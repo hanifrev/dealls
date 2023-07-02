@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-// import theData from "../dummy/Carts.json";
 import ReactPaginate from "react-paginate";
 import { useGetCartsQuery } from "@/app/services/api";
+import Link from "next/link";
 
 const Carts = () => {
   // @ts-ignore
@@ -32,7 +32,7 @@ const Carts = () => {
   };
 
   return (
-    <div id="products" className="pt-4 ">
+    <div id="products" className="pt-0  ">
       <div className="font-bold pb-5 text-lg md:text-3xl">Carts List</div>
       {isLoading ? (
         <div className="text-xl md:text-4xl py-4">LOADING...</div>
@@ -75,7 +75,7 @@ const Carts = () => {
                     </td>
                     <td className="w-[100px] flex justify-center text-left ">
                       <button className="bg-blue-500 hover:bg-blue-300 text-white px-2 py-1 rounded-md w-20">
-                        Detail
+                        <Link href={`/carts/${x.id}`}>Detail</Link>
                       </button>
                     </td>
                   </tr>

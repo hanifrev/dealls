@@ -69,6 +69,8 @@ const Products: React.FC = () => {
 
   return (
     <div id="products">
+      <div className="font-bold pb-0 text-lg md:text-3xl">Products List</div>
+
       <details>
         <summary>
           <h1>Chart of Brand</h1>
@@ -91,7 +93,7 @@ const Products: React.FC = () => {
       {isLoading ? (
         <div className="text-xl md:text-4xl py-4">LOADING...</div>
       ) : (
-        <div className="the-table overflow-x-auto">
+        <div className="the-table overflow-x-auto pb-4">
           <table rules="all" className="mb-1">
             <thead>
               <tr className="flex flex-row items-center text-[10px] md:text-sm table-head">

@@ -20,8 +20,23 @@ export const api = createApi({
         url: `/carts/${id}`,
       }),
     }),
+    getOneUser: builder.query({
+      query: (id: string) => ({
+        url: `/users/${id}`,
+      }),
+    }),
+    getOneProduct: builder.query({
+      query: (id: string) => ({
+        url: `/products/${id}`,
+      }),
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useGetCartsQuery, useGetOneCartsQuery } =
-  api;
+export const {
+  useGetProductsQuery,
+  useGetCartsQuery,
+  useGetOneCartsQuery,
+  useGetOneUserQuery,
+  useGetOneProductQuery,
+} = api;
