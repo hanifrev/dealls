@@ -122,11 +122,11 @@ const Products: React.FC = () => {
                         return x;
                       }
                     })
-                    .map((x: any) => {
+                    .map((x: any, index: any) => {
                       return (
                         <tr
                           className="flex flex-row items-center text-[10px] md:text-sm  table-head"
-                          key={x.id}
+                          key={index}
                         >
                           <td className="w-[50px] md:w-[70px] text-left ">
                             {x.id}
