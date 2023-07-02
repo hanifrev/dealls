@@ -47,8 +47,8 @@ const CartDetails = () => {
                 <th className="w-[80px]  text-center flex justify-center">
                   ID
                 </th>
-                <th className="w-[200px] text-left pl-4">Product Name</th>
-                <th className="w-[100px] text-left pl-4">Brand</th>
+                <th className="w-[300px] text-left pl-4">Product Name</th>
+                {/* <th className="w-[100px] text-left pl-4">Brand</th> */}
                 <th className="w-[100px] text-left pl-4 ">Quantity</th>
                 <th className="w-[80px] text-left pl-4">Price</th>
                 <th className="w-[80px]  text-center flex justify-center pl-2">
@@ -71,12 +71,10 @@ const CartDetails = () => {
                       className="flex flex-row items-center text-[10px] md:text-sm  table-head"
                     >
                       <td className="w-[80px] text-left ">{x.id}</td>
-                      <td className="w-[200px] text-left pl-4 publicAdd">
+                      <td className="w-[300px] text-left pl-4 publicAdd">
                         {x.title}
                       </td>
-                      <td className="w-[100px] text-left pl-4 flex-wrap">
-                        {/* {x.discountedTotal} */}
-                      </td>
+                      {/* <td className="w-[100px] text-left pl-4 flex-wrap">{x.discountedTotal}</td> */}
                       <td className="w-[100px] text-left  flex justify-center">
                         {x.quantity}
                       </td>

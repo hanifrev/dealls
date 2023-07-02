@@ -74,9 +74,11 @@ const Carts = () => {
                       {x.totalQuantity}
                     </td>
                     <td className="w-[100px] flex justify-center text-left ">
-                      <button className="bg-blue-500 hover:bg-blue-300 text-white px-2 py-1 rounded-md w-20">
-                        <Link href={`/carts/${x.id}`}>Detail</Link>
-                      </button>
+                      <Link href={`/carts/${x.id}`}>
+                        <button className="bg-blue-500 hover:bg-blue-300 text-white px-2 py-1 rounded-md w-20">
+                          Detail
+                        </button>
+                      </Link>
                     </td>
                   </tr>
                 );
