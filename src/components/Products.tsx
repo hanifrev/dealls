@@ -153,9 +153,12 @@ const Products: React.FC = () => {
                       );
                     })
                 : filteredProducts &&
-                  filteredProducts.map((x: any) => {
+                  filteredProducts.map((x: any, index: any) => {
                     return (
-                      <tr className="flex flex-row items-center text-[10px] md:text-sm  table-head">
+                      <tr
+                        className="flex flex-row items-center text-[10px] md:text-sm  table-head"
+                        key={index}
+                      >
                         <td className="w-[50px] md:w-[70px] text-left ">
                           {x.id}
                         </td>
