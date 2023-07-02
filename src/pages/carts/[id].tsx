@@ -33,7 +33,7 @@ const CartDetails = () => {
       <div className="font-bold pb-4 text-lg md:text-3xl">Cart {id}</div>
       <div className="card mb-4 md:mb-8 text-[10px] md:font-sm">
         <span>
-          USER: {username && username.firstName} {username && username.lastName}
+          User: {username && username.firstName} {username && username.lastName}
         </span>
         <span>Quantity: {data && data.totalQuantity}</span>
         <span>Total Items: {data && data.totalProducts}</span>

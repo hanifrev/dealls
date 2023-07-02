@@ -124,7 +124,10 @@ const Products: React.FC = () => {
                     })
                     .map((x: any) => {
                       return (
-                        <tr className="flex flex-row items-center text-[10px] md:text-sm  table-head">
+                        <tr
+                          className="flex flex-row items-center text-[10px] md:text-sm  table-head"
+                          key={x.id}
+                        >
                           <td className="w-[50px] md:w-[70px] text-left ">
                             {x.id}
                           </td>
